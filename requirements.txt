@@ -1,0 +1,47 @@
+# Django Core
+Django==4.2  # Framework chính để xây dựng web bằng Python
+whitenoise==6.9.0  # Hỗ trợ phục vụ static file trong production
+djangorestframework==3.15.2  # DRF giúp xây dựng RESTful API
+
+django-cors-headers==4.7.0  # Hỗ trợ CORS (Cross-Origin Resource Sharing)
+django-debug-toolbar==4.3.0  # Công cụ debug Django
+django-environ==0.12.0  # Quản lý biến môi trường (.env)
+django-storages==1.14.5  # Hỗ trợ lưu trữ file trên S3, GCP, Azure
+django-grappelli==4.0.1  # Giao diện Admin tùy chỉnh cho Django
+
+# Database
+psycopg2-binary==2.9.10  # PostgreSQL database adapter
+sqlparse==0.5.3  # Hỗ trợ phân tích và format SQL queries
+
+# Celery & Task Queue
+celery==5.4.0  # Hệ thống task queue
+redis==5.2.1  # Redis message broker cho Celery
+kombu==5.4.2  # Quản lý giao tiếp giữa Celery và Redis/RabbitMQ
+amqp==5.3.1  # Giao thức AMQP để giao tiếp với RabbitMQ
+billiard==4.2.1  # Fork worker process trong Celery
+vine==5.1.0  # Quản lý callback functions trong Celery
+
+# AWS & Storage
+boto3==1.36.26  # AWS SDK cho Python (S3, Lambda, etc.)
+botocore==1.36.26  # Core library cho boto3
+s3transfer==0.11.2  # Tăng tốc upload/download file trên S3
+
+# Logging & Monitoring
+gunicorn==23.0.0  # WSGI server cho Django
+click==8.1.8  # CLI framework
+click-didyoumean==0.3.1  # Gợi ý lệnh CLI khi nhập sai
+click-plugins==1.1.1  # Mở rộng lệnh CLI bằng plugins
+click-repl==0.3.0  # Chạy Django shell tương tác
+
+# Utilities & Support
+asgiref==3.8.1  # Hỗ trợ Django chạy ASGI (WebSockets, async tasks)
+packaging==24.2  # Hỗ trợ quản lý version package
+prompt_toolkit==3.0.50  # CLI nâng cao
+python-dateutil==2.9.0.post0  # Xử lý thời gian nâng cao
+python-dotenv==1.0.1  # Tải biến từ file .env
+tzdata==2025.1  # Dữ liệu múi giờ quốc tế
+urllib3==2.3.0  # HTTP client library
+six==1.17.0  # Hỗ trợ tương thích giữa Python 2 & 3
+wcwidth==0.2.13  # Xử lý độ rộng ký tự Unicode trong terminal
+
+Pillow==11.1.0
