@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-import uuid
 import random
 import string
 from datetime import timedelta
@@ -122,7 +121,7 @@ class PhoneNumber(AuditMixin):
     is_primary = models.BooleanField(
         default=False, help_text=_("Is this the user's primary phone number?")
     )
-    
+
     is_phone_verified = models.BooleanField(
         default=False, help_text=_("Has the phone number been verified?")
     )

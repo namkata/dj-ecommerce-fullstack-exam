@@ -52,8 +52,14 @@ INSTALLED_APPS = [
 
     # My App (Using startapp commands)
     'core',
-    'apps',
     'auths',
+    'apps.categories',
+    'apps.products',
+    'apps.abouts',
+    'apps.orders',
+    'apps.reviews',
+    'apps.payments',
+    'apps.contacts',
 ]
 
 MIDDLEWARE = [
