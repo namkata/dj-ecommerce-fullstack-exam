@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
 from pathlib import Path
-from tkinter import S
 from dotenv import load_dotenv
 load_dotenv()  # Load environment variables from .env file
 
@@ -23,7 +22,6 @@ ROOT_DIR = BASE_DIR.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv(
     'DJANGO_SECRET_KEY',
@@ -31,14 +29,10 @@ SECRET_KEY = os.getenv(
     )
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = False # Should be overridden in development.py
-#DEBUG = os.getenv('DEBUG', False)
-DEBUG=True
+DEBUG = False # Should be overridden in development.py
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost').split(',')
 
-
 # Application definition
-
 INSTALLED_APPS = [
     'grappelli',
     'django.contrib.admin',
@@ -145,11 +139,11 @@ USE_TZ = True
 
 STATIC_URL = '/staticfiles/'
 # Thư mục gốc chứa các tệp tĩnh (chỉ sử dụng khi DEBUG=False)
-#STATIC_ROOT = os.path.join(ROOT_DIR, "staticfiles")
+STATIC_ROOT = os.path.join(ROOT_DIR, "staticfiles")
 
-STATICFILES_DIRS = [
-    ROOT_DIR  / "staticfiles/",
-]
+# STATICFILES_DIRS = [
+#     ROOT_DIR  / "staticfiles/",
+# ]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(ROOT_DIR, "media")
@@ -181,7 +175,12 @@ LOCALE_PATHS = [
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 AUTH_USER_MODEL = 'auths.User'
+
+# Configure
+GRAPPELLI_ADMIN_HEADLINE = 'E-commerce administration'
+GRAPPELLI_ADMIN_TITLE = 'E-commerce administration'
+GRAPPELLI_AUTOCOMPLETE_LIMIT=10
+ADMIN_URL = os.getenv("ADMIN_URL", "admin/")
+GRAPPELLI_ADMIN_URL=ADMIN_URL

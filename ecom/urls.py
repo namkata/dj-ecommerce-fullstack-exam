@@ -19,13 +19,17 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from core import urls as core_urls
-
-
+from django.conf.urls import(handler400, handler403, handler404, handler500) # noqa
+# Define your URL patterns here.
 urlpatterns = [
-    path('grappelli/', include('grappelli.urls')), # grappelli URLS
-    path('admin/', admin.site.urls),
+    path('grappelli/', include('grappelli.urls')),  # grappelli URLS
+    path(settings.ADMIN_URL, admin.site.urls),
     path("", include(core_urls)),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+handler404 = 'ecom.views.custom_404_view'
+handler500 = 'ecom.views.custom_500_view'
+handler403 = 'ecom.views.custom_403_view'
+handler400 = 'ecom.views.custom_400_view'
