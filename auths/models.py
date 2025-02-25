@@ -5,6 +5,7 @@ import string
 from datetime import timedelta
 from django.utils.timezone import now
 from django.utils.translation import gettext_lazy as _
+from django_countries.fields import CountryField
 
 
 def get_gender_choices():
@@ -162,7 +163,17 @@ class UserAddress(AuditMixin):
     postal_code = models.CharField(
         max_length=20, help_text=_("Postal code of the address.")
     )
-    country = models.CharField(max_length=100, help_text=_("Country of the address."))
+    country = CountryField(help_text=_("Country of the address."))
+    
+    latitude = models.DecimalField(
+        max_digits=9, decimal_places=6, null=True, blank=True, help_text=_("Latitude of the address.")
+    )
+    longitude = models.DecimalField(
+        max_digits=9, decimal_places=6, null=True, blank=True, help_text=_("Longitude of the address.")
+    )
+
+    is_default = models.BooleanField(default=False, help_text=_("Mark this address as default."))
+    is_active = models.BooleanField(default=True, help_text=_("Set to false to soft-delete the address."))
 
     def __str__(self):
         return f"{self.address_line1}, {self.city}, {self.country}"

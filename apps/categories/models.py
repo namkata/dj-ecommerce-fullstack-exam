@@ -24,6 +24,11 @@ class Category(AuditMixin):
         upload_to='category_icons',
         help_text=_("Select a icon if this need icon show (optional).")
         )
+    is_active = models.BooleanField(
+        default=True,
+        verbose_name=_("Active"),
+          help_text=_("Check this box to mark the category as active and visible.")
+    )
 
     class Meta:
         verbose_name = _("Category")

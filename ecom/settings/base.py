@@ -54,6 +54,9 @@ INSTALLED_APPS = [
     'apps.reviews',
     'apps.payments',
     'apps.contacts',
+    'apps.shipping',
+    'apps.promotions',
+    'apps.analytics',
 ]
 
 MIDDLEWARE = [
@@ -154,8 +157,17 @@ STATICFILES_FINDERS = [
 ]
 
 STORAGES = {
-    'staticfiles': {
-        'BACKEND': 'django.contrib.staticfiles.storage.StaticFilesStorage',
+     "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+        "OPTIONS": {
+            "location": MEDIA_ROOT,  # Đường dẫn lưu file
+        },
+    },
+    "staticfiles": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+        "OPTIONS": {
+            "location": STATIC_ROOT,  # Thư mục lưu static
+        },
     },
     # Các cấu hình khác...
 }
