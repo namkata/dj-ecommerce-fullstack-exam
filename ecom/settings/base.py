@@ -83,6 +83,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'apps.categories.context_processors.categories_processor',
             ],
         },
     },
@@ -164,7 +165,7 @@ STORAGES = {
         },
     },
     "staticfiles": {
-        "BACKEND": "django.core.files.storage.FileSystemStorage",
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
         "OPTIONS": {
             "location": STATIC_ROOT,  # Thư mục lưu static
         },

@@ -17,9 +17,8 @@ COPY . /app/
 
 # Collect static files
 RUN python manage.py collectstatic --noinput
-
-# Expose port (Django usually runs on port 8000)
-EXPOSE 8000
-
-# Run the application using Gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "ecom.wsgi:application"]
+## Expose port (Django usually runs on port 8000)
+#EXPOSE 8000
+#
+## Run the application using Gunicorn
+#CMD ["gunicorn", "--bind", "0.0.0.0:8000", "ecom.wsgi:application"]
