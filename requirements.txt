@@ -46,3 +46,6 @@ wcwidth==0.2.13  # Xử lý độ rộng ký tự Unicode trong terminal
 
 Pillow==11.1.0
 django_countries==7.6.1 # Xử lý thông tin quốc gia
+
+django-simple-captcha==0.6.2
+django-allauth==65.0.0

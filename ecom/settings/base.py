@@ -57,6 +57,8 @@ INSTALLED_APPS = [
     'apps.shipping',
     'apps.promotions',
     'apps.analytics',
+    'captcha',
+    'apps.authenticate',
 ]
 
 MIDDLEWARE = [

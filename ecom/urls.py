@@ -25,6 +25,8 @@ urlpatterns = [
     path('grappelli/', include('grappelli.urls')),  # grappelli URLS
     path(settings.ADMIN_URL, admin.site.urls),
     path("", include(core_urls)),
+    path('captcha/', include('captcha.urls')),
+    path("", include("apps.authenticate.urls")),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
