@@ -1,12 +1,20 @@
-from django.views.generic.edit import FormView, CreateView
-from django.urls import reverse_lazy
+from django.shortcuts import render, redirect
+from django.views.decorators.csrf import csrf_exempt
 from .forms import UserCreateForm
 
-class RegisterView(CreateView):
-    template_name = "pages/page-register.html"
-    form_class = UserCreateForm
-    # success_url = reverse_lazy("login")  # Redirect after successful registration
 
-    def form_valid(self, form):
-        form.save()  # Save the user
-        return super().form_valid(form)
+@csrf_exempt
+def register_view(request):
+    if request.method == "POST":
+        form = UserCreateForm(request.POST, request.FILES)  # Include files for profile picture
+        if form.is_valid():
+            form.save()  # Save the user
+            return redirect("login")  # Redirect after successful registration
+    else:
+        form = UserCreateForm()
+
+    return render(request, "pages/page-register.html", {"form": form})
+
+
+def login_view(request):
+    return render(request, "pages/page-login.html")

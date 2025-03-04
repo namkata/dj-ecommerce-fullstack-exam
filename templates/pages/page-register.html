@@ -13,173 +13,43 @@
                                     <div class="padding_eight_all bg-white">
                                         <div class="heading_s1">
                                             <h1 class="mb-5">Create an Account</h1>
-                                            <p class="mb-30">Already have an account? <a href="#">Login</a></p>
+                                            <p class="mb-30">Already have an account? <a href="{% url 'login' %}">Login</a></p>
                                         </div>
-                                        <!--<form method="post">
-                                            <div class="form-group">
-                                                <input type="text" required="" name="username" placeholder="Username" />
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" required="" name="email" placeholder="Email" />
-                                            </div>
-                                            <div class="form-group">
-                                                <input required="" type="password" name="password" placeholder="Password" />
-                                            </div>
-                                            <div class="form-group">
-                                                <input required="" type="password" name="password" placeholder="Confirm password" />
-                                            </div>
-                                            <div class="login_footer form-group">
-                                                <div class="chek-form">
-                                                    <input type="text" required="" name="email" placeholder="Security code *" />
-                                                </div>
-                                                <span class="security-code">
-                                                    <b class="text-new">8</b>
-                                                    <b class="text-hot">6</b>
-                                                    <b class="text-sale">7</b>
-                                                    <b class="text-best">5</b>
-                                                </span>
-                                            </div>
-                                            <div class="login_footer form-group mb-50">
-                                                <div class="chek-form">
-                                                    <div class="custome-checkbox">
-                                                        <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox12" value="" />
-                                                        <label class="form-check-label" for="exampleCheckbox12"><span>I agree to terms &amp; Policy.</span></label>
-                                                    </div>
-                                                </div>
-                                                <a href="#"><i class="fi-rs-book-alt mr-5 text-muted"></i>Lean more</a>
-                                            </div>
-                                            <div class="form-group mb-30">
-                                                <button type="submit" class="btn btn-fill-out btn-block hover-up font-weight-bold" name="login">Submit &amp; Register</button>
-                                            </div>
-                                            <p class="font-xs text-muted"><strong>Note:</strong>Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our privacy policy</p>
-                                        </form> -->
                                         <form method="post" enctype="multipart/form-data">
                                             {% csrf_token %}
+                                            {{ form.non_field_errors }}
+                                            {% for field in form %}
+                                                <p>
+                                                    {{ field.label_tag }} {{ field }}
+                                                    {% if field.help_text %}
+                                                        <small class="form-text text-muted">{{ field.help_text }}</small>
+                                                    {% endif %}
+                                                    {% if field.errors %}
+                                                        <span class="error">{{ field.errors.0 }}</span>
+                                                    {% endif %}
+                                                </p>
+                                            {% endfor %}
+
+                                            <!-- Profile Picture Preview -->
+                                            <p>
+                                                {{ form.profile_picture.label_tag }} {{ form.profile_picture }}
+                                                <img id="profile_preview" src="{% static 'assets/imgs/default-avatar.png' %}"
+                                                     alt="Profile Preview"
+                                                     style="display:none; width:100px; height:100px; margin-top:10px; border-radius:50%;">
+                                                <button type="button" id="remove-profile-picture"
+                                                        class="btn btn-sm btn-danger"
+                                                        style="display:none; margin-top:10px;">
+                                                    Remove Image
+                                                </button>
+                                            </p>
 
                                             <div class="form-group">
-                                                {{ form.username.label_tag }}
-                                                {{ form.username }}
-                                                {% if form.username.errors %}
-                                                    <div class="error-message">
-                                                        {{ form.username.errors.0 }}
-                                                    </div>
-                                                {% endif %}
-                                                <small class="form-text text-muted">Enter a unique username.</small>
-                                            </div>
-
-                                            <div class="form-group">
-                                                {{ form.email.label_tag }}
-                                                {{ form.email }}
-                                                {% if form.email.errors %}
-                                                    <div class="error-message">
-                                                        {{ form.email.errors.0 }}
-                                                    </div>
-                                                {% endif %}
-                                                <small class="form-text text-muted">Enter a valid email address. Sub-addressing (e.g., example+tag@gmail.com) is not allowed.</small>
-                                            </div>
-
-                                            <div class="form-group">
-                                                {{ form.password1.label_tag }}
-                                                {{ form.password1 }}
-                                                {% if form.password1.errors %}
-                                                    <div class="error-message">
-                                                        {{ form.password1.errors.0 }}
-                                                    </div>
-                                                {% endif %}
-                                                <small class="form-text text-muted">
-                                                    Password must be at least 16 characters long and include:
-                                                    <ul>
-                                                        <li>1 uppercase letter</li>
-                                                        <li>1 lowercase letter</li>
-                                                        <li>1 number</li>
-                                                        <li>1 special character (@, #, $, etc.)</li>
-                                                    </ul>
-                                                </small>
-                                            </div>
-
-                                            <div class="form-group">
-                                                {{ form.password2.label_tag }}
-                                                {{ form.password2 }}
-                                                {% if form.password2.errors %}
-                                                    <div class="error-message">
-                                                        {{ form.password2.errors.0 }}
-                                                    </div>
-                                                {% endif %}
-                                                 <small class="form-text text-muted">Re-enter the password for confirmation.</small>
-                                            </div>
-
-                                            <div class="form-group">
-                                                {{ form.date_of_birth.label_tag }}
-                                                {{ form.date_of_birth }}
-                                                {% if form.date_of_birth.errors %}
-                                                    <div class="error-message">
-                                                        {{ form.date_of_birth.errors.0 }}
-                                                    </div>
-                                                {% endif %}
-                                                 <small class="form-text text-muted">Select your date of birth (optional).</small>
-                                            </div>
-
-                                            <div class="form-group">
-                                                {{ form.gender.label_tag }}
-                                                {{ form.gender }}
-                                                 <small class="form-text text-muted">Select your gender (optional).</small>
-                                            </div>
-
-                                            <div class="form-group">
-                                                {{ form.profile_picture.label_tag }}
-                                                 <div>
-                                                    <input type="file" id="id_profile_picture" name="profile_picture" class="form-control">
-                                                    <br>
-                                                    <img id="profile_preview" src="" alt="Profile Preview" style="display: none; max-width: 150px; border-radius: 50%;">
-                                                </div>
-                                                <small class="form-text text-muted">Upload a profile picture (optional).</small>
-                                            </div>
-
-{#                                            <div class="form-group">#}
-{#                                                {{ form.default_phone_number.label_tag }}#}
-{#                                                {{ form.default_phone_number }}#}
-{#                                            </div>#}
-{##}
-{#                                            <div class="form-group">#}
-{#                                                {{ form.default_address.label_tag }}#}
-{#                                                {{ form.default_address }}#}
-{#                                            </div>#}
-{##}
-{#                                            <div class="form-group">#}
-{#                                                {{ form.wallet_balance.label_tag }}#}
-{#                                                {{ form.wallet_balance }}#}
-{#                                            </div>#}
-{##}
-{#                                            <div class="form-group">#}
-{#                                                {{ form.loyalty_points.label_tag }}#}
-{#                                                {{ form.loyalty_points }}#}
-{#                                            </div>#}
-{##}
-{#                                            <div class="form-group">#}
-{#                                                {{ form.preferred_language.label_tag }}#}
-{#                                                {{ form.preferred_language }}#}
-{#                                            </div>#}
-{##}
-{#                                            <div class="form-group">#}
-{#                                                {{ form.newsletter_subscribed }}#}
-{#                                                {{ form.newsletter_subscribed.label_tag }}#}
-{#                                            </div>#}
-
-                                            <div class="form-group">
-                                                {{ form.captcha.label_tag }}
                                                 {{ form.captcha }}
-                                                {% if form.captcha.errors %}
-                                                    <div class="error-message">
-                                                        {{ form.captcha.errors.0 }}
-                                                    </div>
-                                                {% endif %}
-                                                <small class="form-text text-muted">Enter the security code shown.</small>
+                                                <button type="button" id="reload-captcha" class="btn btn-secondary btn-sm">Reload Captcha</button>
                                             </div>
-
                                             <div class="form-group mb-30">
-                                                <button type="submit" class="btn btn-fill-out btn-block hover-up font-weight-bold">Submit & Register</button>
+                                                <button type="submit" value="Submit" class="btn btn-fill-out btn-block hover-up font-weight-bold">Submit & Register</button>
                                             </div>
-
                                         </form>
                                     </div>
                                 </div>
@@ -208,14 +78,42 @@
     </main>
 
     <script>
+        document.getElementById("reload-captcha").addEventListener("click", function() {
+            var captchaImage = document.querySelector(".captcha img");
+            captchaImage.src = captchaImage.src.split("?")[0] + "?reload=" + new Date().getTime();
+        });
+
         document.getElementById('id_profile_picture').addEventListener('change', function(event) {
+            let file = event.target.files[0];
             let reader = new FileReader();
-            reader.onload = function() {
-                let img = document.getElementById('profile_preview');
-                img.src = reader.result;
-                img.style.display = 'block';
-            };
-            reader.readAsDataURL(event.target.files[0]);
+            let img = document.getElementById('profile_preview');
+            let removeBtn = document.getElementById('remove-profile-picture');
+
+            if (file) {
+                if (file.type.startsWith('image/')) {
+                    reader.onload = function() {
+                        img.src = reader.result;
+                        img.style.display = 'block';
+                        removeBtn.style.display = 'inline-block';
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    alert("Please upload a valid image file.");
+                    event.target.value = "";
+                    img.style.display = 'none';
+                    removeBtn.style.display = 'none';
+                }
+            }
+        });
+
+        document.getElementById('remove-profile-picture').addEventListener('click', function() {
+            let img = document.getElementById('profile_preview');
+            let fileInput = document.getElementById('id_profile_picture');
+            let removeBtn = document.getElementById('remove-profile-picture');
+
+            fileInput.value = "";
+            img.style.display = 'none';
+            removeBtn.style.display = 'none';
         });
     </script>
 {% endblock %}

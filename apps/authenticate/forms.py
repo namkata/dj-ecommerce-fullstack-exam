@@ -58,18 +58,6 @@ class UserCreateForm(UserCreationForm):
         widget=forms.PasswordInput(attrs={"class": "form-control"}),
         help_text="Enter the same password as above, for verification.",
     )
-    # default_phone_number = forms.ModelChoiceField(
-    #     queryset=PhoneNumber.objects.all(),
-    #     required=False,
-    #     widget=forms.Select(attrs={"class": "form-control"}),
-    #     help_text="Select the default phone number for the user."
-    # )
-    # default_address = forms.ModelChoiceField(
-    #     queryset=UserAddress.objects.all(),
-    #     required=False,
-    #     widget=forms.Select(attrs={"class": "form-control"}),
-    #     help_text="Select the default address for the user."
-    # )
     gender = forms.ChoiceField(
         choices=[("", "Select Gender")] + get_gender_choices(),  # Add a blank choice
         required=False,  # Make it optional
@@ -86,17 +74,7 @@ class UserCreateForm(UserCreationForm):
         widget=forms.ClearableFileInput(attrs={"class": "form-control"}),
         help_text="Upload a profile picture."
     )
-    preferred_language = forms.ChoiceField(
-        choices=get_language_choices(),
-        widget=forms.Select(attrs={"class": "form-control"}),
-        help_text="Select preferred language."
-    )
-    # newsletter_subscribed = forms.BooleanField(
-    #     required=False,
-    #     initial=True,
-    #     widget=forms.CheckboxInput(attrs={"class": "form-check-input"}),
-    #     help_text="Subscribe to newsletters."
-    # )
+
     captcha = CaptchaField(
         help_text="Enter the security code."
     )
@@ -104,20 +82,16 @@ class UserCreateForm(UserCreationForm):
     class Meta:
         model = User
         fields = (
-            "username", "email", "password1", "password2", "date_of_birth", "gender",
+            "username",
+            "email",
+            "password1",
+            "password2",
+            "date_of_birth",
+            "gender",
             "profile_picture",
-            # "default_phone_number",
-            # "default_address",
-            # "wallet_balance",
-            # "loyalty_points",
-            # "preferred_language",
-            # "newsletter_subscribed",
             "captcha"
         )
         widgets = {
             "username": forms.TextInput(attrs={"class": "form-control"}),
             "email": forms.EmailInput(attrs={"class": "form-control"}),
-            "gender": forms.Select(attrs={"class": "form-control"}),
-            # "wallet_balance": forms.NumberInput(attrs={"class": "form-control"}),
-            # "loyalty_points": forms.NumberInput(attrs={"class": "form-control"}),
         }
