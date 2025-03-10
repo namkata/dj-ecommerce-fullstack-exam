@@ -174,3 +174,4 @@ staticfiles/*
 !staticfiles/assets
 logs/*
 .idea/*
+.idea

@@ -25,14 +25,23 @@
                                             <h1 class="mb-5">Login</h1>
                                             <p class="mb-30">Don't have an account? <a href="{% url 'register' %}">Create here</a></p>
                                         </div>
+                                        <!-- Display Error Messages -->
+                                        {% if messages %}
+                                            <div class="alert alert-danger">
+                                                {% for message in messages %}
+                                                    <p class="text-danger">{{ message }}</p>
+                                                {% endfor %}
+                                            </div>
+                                        {% endif %}
                                         <form method="post">
+                                            {% csrf_token %}
                                             <div class="form-group">
-                                                <input type="text" required="" name="email" placeholder="Username or Email *" />
+                                                <input id="username" type="text" required="" name="username" placeholder="Username*" />
                                             </div>
                                             <div class="form-group">
-                                                <input required="" type="password" name="password" placeholder="Your password *" />
+                                                <input id="password" required="" type="password" name="password" placeholder="Your password *" />
                                             </div>
-                                            <div class="login_footer form-group">
+                                            <!-- <div class="login_footer form-group">
                                                 <div class="chek-form">
                                                     <input type="text" required="" name="email" placeholder="Security code *" />
                                                 </div>
@@ -42,7 +51,7 @@
                                                     <b class="text-sale">7</b>
                                                     <b class="text-best">5</b>
                                                 </span>
-                                            </div>
+                                            </div> -->
                                             <div class="login_footer form-group mb-50">
                                                 <div class="chek-form">
                                                     <div class="custome-checkbox">

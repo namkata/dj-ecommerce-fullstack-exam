@@ -185,7 +185,7 @@ for directory in REQUIRED_DIRS:
     os.makedirs(directory, exist_ok=True)
 
 LOCALE_PATHS = [
-    os.path.join(ROOT_DIR, "logs"),
+    os.path.join(ROOT_DIR, "locales"),
 ]
 
 # Default primary key field type
@@ -194,8 +194,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'auths.User'
 
 # Configure
-GRAPPELLI_ADMIN_HEADLINE = 'E-commerce administration'
-GRAPPELLI_ADMIN_TITLE = 'E-commerce administration'
-GRAPPELLI_AUTOCOMPLETE_LIMIT=10
+# GRAPPELLI_ADMIN_HEADLINE = 'E-commerce administration'
+# GRAPPELLI_ADMIN_TITLE = 'E-commerce administration'
+# GRAPPELLI_AUTOCOMPLETE_LIMIT=10
 ADMIN_URL = os.getenv("ADMIN_URL", "admin/")
-GRAPPELLI_ADMIN_URL=ADMIN_URL
+# GRAPPELLI_ADMIN_URL=ADMIN_URL

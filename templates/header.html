@@ -226,13 +226,13 @@
                                                 <a href="#"><i class="fi fi-rs-settings-sliders mr-10"></i>Setting</a>
                                             </li>
                                             <li>
-                                                <a href="#"><i class="fi fi-rs-sign-out mr-10"></i>Sign out</a>
+                                                <a href="{% url 'logout' %}"><i class="fi fi-rs-sign-out mr-10"></i>Sign out</a>
                                             </li>
                                         </ul>
                                     </div>
                                 {% else %}
                                     <a href="{% url 'register' %}" id="btn-signup" style="font-size: 16px;">Sign Up</a>
-                                    <a href="#" id="btn-signin" style="font-size: 16px;">Sign In</a>
+                                    <a href="{% url 'login' %}" id="btn-signin" style="font-size: 16px;">Sign In</a>
                                 {% endif %}
                             </div>
                         </div>
